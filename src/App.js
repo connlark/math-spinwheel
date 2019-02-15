@@ -45,7 +45,7 @@ class App extends Component {
       },
       3: {
         image: require('./imgs/large.jpg'),
-        result: require('./imgs/med.jpg')
+        result: require('./imgs/large.jpg')
       },
       4: {
         image: require('./imgs/small.jpeg'),
@@ -142,7 +142,7 @@ class App extends Component {
         
         numberOfSources={3}
         //rotations={5}
-        backgroundColor="red"
+        backgroundColor="black"
         outerRingColor="black"
         buttonColor="red"
         onEndME={(res) => alert(res)}
