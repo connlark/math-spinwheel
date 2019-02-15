@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    
     <meta charset="utf-8" />
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no, minimum-scale=1"
     />
     <meta name="theme-color" content="#000000" />
     <!--
@@ -38,4 +43,18 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
+
+<script src="https://www.gstatic.com/firebasejs/5.8.3/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBb2JLoPdIxxRDJcX1cXZWtN8veJeUPGVk",
+    authDomain: "math-spinwheel.firebaseapp.com",
+    databaseURL: "https://math-spinwheel.firebaseio.com",
+    projectId: "math-spinwheel",
+    storageBucket: "math-spinwheel.appspot.com",
+    messagingSenderId: "719880866067"
+  };
+  firebase.initializeApp(config);
+</script>
 </html>
