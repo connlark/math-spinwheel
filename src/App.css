@@ -15,8 +15,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  
+}
+
+.App-textwon {
+  background-color: white;
+ 
+  font-size: calc(7px + 2vmin);
+  color: black;
 }
 
 .App-link {

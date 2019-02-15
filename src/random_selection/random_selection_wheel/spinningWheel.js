@@ -198,7 +198,7 @@ const SpinningWheel =
             // setCount(count + 1)
             prevProps.dispatch(addTodo(_this3.state.result))
 
-              alert(_this3.state.result)
+              //alert(_this3.state.result)
             }, this.state.durationOfSpin * 1000);
           }
         }

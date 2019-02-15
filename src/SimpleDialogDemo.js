@@ -14,7 +14,7 @@ import AddIcon from '@material-ui/icons/Add';
 import Typography from '@material-ui/core/Typography';
 import blue from '@material-ui/core/colors/blue';
 
-const emails = ['username@gmail.com', 'user02@gmail.com'];
+const emails = [1, 2,3,4,5];
 const styles = {
   avatar: {
     backgroundColor: blue[100],
@@ -36,7 +36,7 @@ class SimpleDialog extends React.Component {
 
     return (
       <Dialog onClose={this.handleClose} aria-labelledby="simple-dialog-title" {...other}>
-        <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
+        <DialogTitle id="simple-dialog-title">Select Mathlete Score</DialogTitle>
         <div>
           <List>
             {emails.map(email => (
@@ -49,14 +49,6 @@ class SimpleDialog extends React.Component {
                 <ListItemText primary={email} />
               </ListItem>
             ))}
-            <ListItem button onClick={() => this.handleListItemClick('addAccount')}>
-              <ListItemAvatar>
-                <Avatar>
-                  <AddIcon />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary="add account" />
-            </ListItem>
           </List>
         </div>
       </Dialog>
@@ -75,7 +67,7 @@ const SimpleDialogWrapped = withStyles(styles)(SimpleDialog);
 class SimpleDialogDemo extends React.Component {
   state = {
     open: false,
-    selectedValue: emails[1],
+    selectedValue: this.props.score,
   };
 
   handleClickOpen = () => {
@@ -86,18 +78,20 @@ class SimpleDialogDemo extends React.Component {
 
   handleClose = value => {
     this.setState({ selectedValue: value, open: false });
+    this.props.updateScore(value)
   };
 
   render() {
+
     return (
       <div>
         <Typography variant="subtitle1">Selected: {this.state.selectedValue}</Typography>
         <br />
         <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
-          Open simple dialog
+          Selct Mathlete score
         </Button>
         <SimpleDialogWrapped
-          selectedValue={this.state.selectedValue}
+          selectedValue={this.props.score}
           open={this.state.open}
           onClose={this.handleClose}
         />

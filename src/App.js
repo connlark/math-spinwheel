@@ -12,33 +12,9 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import SimpleDialogDemo from './SimpleDialogDemo'
 import { connect } from 'react-redux'
 import { addTodo } from './actions'
+import CountUp from 'react-countup';
+var random = require("random-js")(); // uses the nativeMath engine
 
-const wheelOptions = {
-  1: {
-    image: require('./imgs/small.jpeg'),
-    result: require('./imgs/small.jpeg')
-  },
-  2: {
-    image: require('./imgs/med.jpg'),
-    result: require('./imgs/med.jpg')
-  },
-  3: {
-    image: require('./imgs/large.jpg'),
-    result: require('./imgs/med.jpg')
-  },
-  4: {
-    image: require('./imgs/small.jpeg'),
-    result: require('./imgs/small.jpeg')
-  },
-  5: {
-    image: require('./imgs/med.jpg'),
-    result: require('./imgs/med.jpg')
-  },
-  6: {
-    image: require('./imgs/small.jpeg'),
-    result: require('./imgs/small.jpeg')
-  },
-}
 
 
 var divStyle = {
@@ -47,17 +23,50 @@ var divStyle = {
   margin: "20px"
 };
 
+const pStyle = {
+  fontSize: '15px',
+  textAlign: 'center'
+};
+
 class App extends Component {
   state = {
     open: false,
-    resultCount: 0
+    resultCount: 0,
+    totalWon: 0,
+    score: 5,
+    wheelOptions: {
+      1: {
+        image: require('./imgs/small.jpeg'),
+        result: require('./imgs/small.jpeg')
+      },
+      2: {
+        image: require('./imgs/med.jpg'),
+        result: require('./imgs/med.jpg')
+      },
+      3: {
+        image: require('./imgs/large.jpg'),
+        result: require('./imgs/med.jpg')
+      },
+      4: {
+        image: require('./imgs/small.jpeg'),
+        result: require('./imgs/small.jpeg')
+      },
+      5: {
+        image: require('./imgs/med.jpg'),
+        result: require('./imgs/med.jpg')
+      },
+      6: {
+        image: require('./imgs/small.jpeg'),
+        result: require('./imgs/small.jpeg')
+      },
+    }
   };
 
   display(spinResult){
     console.log('dispres', spinResult)
 
     //this.setState({ resultCount: this.state.resultCount });
-    return <img src={`${spinResult}`} alt={"result"} />
+    //return <img src={`${spinResult}`} alt={"result"} />
   }
 
   handleClickOpen = () => {
@@ -68,13 +77,54 @@ class App extends Component {
     this.setState({ open: false });
   };
 
-  UNSAFE_componentDidUpdate(prevProps, prevState) {
-    if (this.props.todos?.length !== prevProps.todos?.length){
-      alert('riogjrogijriojgroigjrogjrgoij')
+  calcTotalWon = (e) => {
+    let retuner = 0;
+    let chance = 0;
+    switch (e) {
+      case '/static/media/med.3de86e32.jpg':
+        retuner =  random.integer(5, 7);
+        chance = 'Decent Luck';
+        break;
+      case '/static/media/small.2d17d3a1.jpeg':
+        chance = 'Not Great';
+        retuner =  random.integer(1, 4);
+        break;
+      default:
+        chance = 'Good Luck 😁';
+        retuner = random.integer(8, 11);
+        break;
     }
+    //alert(retuner)
+    this.setState({chanceWon: chance})
+    return retuner
+    
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    //alert('ff')
+    if (this.props.todos?.length > 0 && this.props.todos?.length !== prevProps.todos?.length){
+     // alert('riogjrogijriojgroigjrogjrgoij')
+     console.log(this.props.todos)
+      const totalWon = this.calcTotalWon(this.props.todos[this.props.todos.length-1]?.text);
+      
+      this.setState({
+        totalWon: totalWon
+      }, () => {
+        this.handleClickOpen()
+      })
+
+    }
+
+    if (this.props.score !== prevProps.score){
+      console.log(this.state.wheelOptions)
+      this.setState({wheelOptions: this.state.wheelOptions})
+    }
+    
+    //alert(this.props.todos)
   }
 
   render() {
+    const { chanceWon, wheelOptions } = this.state;
     return (
       <>
       <MenuAppBar/>
@@ -95,13 +145,19 @@ class App extends Component {
         onEndME={(res) => alert(res)}
       />
       </div>
-      <Button variant="contained" color="primary" onClick={this.handleClickOpen}>
-        Hello World
-      </Button>
     
        </div>
        
-       <SimpleDialogDemo/>
+       {/* <SimpleDialogDemo
+         score={this.state.score}
+         updateScore={(score) => {
+           this.setState({score: score})
+           console.log(this.state.wheelOptions);
+           let newopts = this.state.wheelOptions;
+           newopts[5] = undefined
+           this.setState({wheelOptions: newopts})
+          }}
+       /> */}
 
        <Dialog
           open={this.state.open}
@@ -109,22 +165,30 @@ class App extends Component {
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
-          <DialogTitle id="alert-dialog-title">{"Use Google's location service?"}</DialogTitle>
+
+        
+          <DialogTitle id="alert-dialog-title">{`Luck Factor: ${chanceWon}`}</DialogTitle>
+
           <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              Let Google help apps determine location. This means sending anonymous location data to
-              Google, even when no apps are running.
-            </DialogContentText>
+       
+
+          
+          <CountUp 
+            end={this.state.totalWon} 
+            duration={2}
+            decimals={3}
+            prefix={`Punches Won: `}
+            className="App-textwon"
+          />
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
-              Disagree
-            </Button>
             <Button onClick={this.handleClose} color="primary" autoFocus>
-              Agree
+              Again
             </Button>
           </DialogActions>
+
         </Dialog>
+        
        </>
     );
   }
