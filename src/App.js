@@ -74,7 +74,10 @@ class App extends Component {
   };
 
   handleClose = () => {
-    this.setState({ open: false });
+    
+    //window.location.reload()
+    window.location.href=window.location.href
+    //this.setState({ open: false });
   };
 
   calcTotalWon = (e) => {
@@ -83,14 +86,14 @@ class App extends Component {
     switch (e) {
       case '/static/media/med.3de86e32.jpg':
         retuner =  random.integer(5, 7);
-        chance = 'Decent Luck';
+        chance = 'Decent Luck (5-7)';
         break;
       case '/static/media/small.2d17d3a1.jpeg':
-        chance = 'Not Great';
+        chance = 'Not Great (1-4)';
         retuner =  random.integer(1, 4);
         break;
       default:
-        chance = 'Good Luck 😁';
+        chance = 'Good Luck 😁 (8-11)';
         retuner = random.integer(8, 11);
         break;
     }
@@ -115,10 +118,10 @@ class App extends Component {
 
     }
 
-    if (this.props.score !== prevProps.score){
+    /*if (this.props.score !== prevProps.score){
       console.log(this.state.wheelOptions)
       this.setState({wheelOptions: this.state.wheelOptions})
-    }
+    }*/
     
     //alert(this.props.todos)
   }
@@ -137,7 +140,7 @@ class App extends Component {
         sources={wheelOptions}
         displayResult={this.display.bind(this)}
         
-        numberOfSources={14}
+        numberOfSources={3}
         //rotations={5}
         backgroundColor="red"
         outerRingColor="black"
