@@ -13,6 +13,8 @@ import SimpleDialogDemo from './SimpleDialogDemo'
 import { connect } from 'react-redux'
 import { addTodo } from './actions'
 import CountUp from 'react-countup';
+import ReactGA from 'react-ga';
+
 var random = require("random-js")(); // uses the nativeMath engine
 
 
@@ -85,16 +87,16 @@ class App extends Component {
     let chance = 0;
     switch (e) {
       case '/static/media/med.3de86e32.jpg':
-        retuner =  random.integer(5, 7);
-        chance = 'Decent Luck (5-7)';
+        retuner =  random.integer(4, 8);
+        chance = 'Decent Luck (4-8)';
         break;
       case '/static/media/small.2d17d3a1.jpeg':
         chance = 'Not Great (1-4)';
         retuner =  random.integer(1, 4);
         break;
       default:
-        chance = 'Good Luck 😁 (8-11)';
-        retuner = random.integer(8, 11);
+        chance = 'Good Luck 😁 (8-12)';
+        retuner = random.integer(8, 12);
         break;
     }
     //alert(retuner)
@@ -109,7 +111,11 @@ class App extends Component {
      // alert('riogjrogijriojgroigjrogjrgoij')
      console.log(this.props.todos)
       const totalWon = this.calcTotalWon(this.props.todos[this.props.todos.length-1]?.text);
-      
+      ReactGA.event({
+        category: 'WON',
+        action: String(totalWon)
+      });
+
       this.setState({
         totalWon: totalWon
       }, () => {

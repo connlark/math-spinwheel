@@ -47,6 +47,7 @@
     "react-countup": "^4.1.0",
     "react-dev-utils": "^7.0.3",
     "react-dom": "^16.8.2",
+    "react-ga": "^2.5.7",
     "react-random-selection-wheel": "^0.1.0",
     "react-random-wheel": "^0.1.0",
     "react-redux": "^6.0.0",

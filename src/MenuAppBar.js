@@ -81,8 +81,8 @@ class MenuAppBar extends React.Component {
                   open={open}
                   onClose={this.handleClose}
                 >
-                  <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-                  <MenuItem onClick={this.handleClose}>My account</MenuItem>
+                  <MenuItem onClick={()=> window.open("https://radius.mathnasium.com/AnswerKey/Index/", "_blank")}>Answers</MenuItem>
+                  <MenuItem onClick={()=> window.open("https://www.symbolab.com")}>Symbolab</MenuItem>
                 </Menu>
               </div>
             )}

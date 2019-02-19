@@ -6,6 +6,12 @@ import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import rootReducer from './reducers'
+import ReactGA from 'react-ga';
+
+function initializeReactGA() {
+  ReactGA.initialize('UA-108987250-2');
+  ReactGA.pageview('/homepage');
+}
 
 //ReactDOM.render(<App />, document.getElementById('root'));
 
@@ -22,4 +28,5 @@ render(
   )
 
 
+initializeReactGA()
 serviceWorker.unregister();
