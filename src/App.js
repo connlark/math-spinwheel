@@ -87,16 +87,16 @@ class App extends Component {
     let chance = 0;
     switch (e) {
       case '/static/media/med.3de86e32.jpg':
-        retuner =  random.integer(4, 8);
-        chance = 'Decent Luck (4-8)';
+        retuner =  random.integer(3, 6);
+        chance = '🙂 (3-6)';
         break;
       case '/static/media/small.2d17d3a1.jpeg':
-        chance = 'Not Great (1-4)';
-        retuner =  random.integer(1, 4);
+        chance = '😕 (1-3)';
+        retuner =  random.integer(1, 3);
         break;
       default:
-        chance = 'Good Luck 😁 (8-12)';
-        retuner = random.integer(8, 12);
+        chance = '🤑 (7-10)';
+        retuner = random.integer(7, 10);
         break;
     }
     //alert(retuner)
@@ -185,7 +185,7 @@ class App extends Component {
           <CountUp 
             end={this.state.totalWon} 
             duration={2}
-            decimals={3}
+            decimals={0}
             prefix={`Punches Won: `}
             className="App-textwon"
           />
