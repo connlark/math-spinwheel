@@ -14,6 +14,10 @@ import { connect } from 'react-redux'
 import { addTodo } from './actions'
 import CountUp from 'react-countup';
 import ReactGA from 'react-ga';
+import { useWindowSize } from 'react-use'
+import Confetti from 'react-confetti'
+import { withStyles } from '@material-ui/core/styles';
+
 
 var random = require("random-js")(); // uses the nativeMath engine
 
@@ -29,6 +33,8 @@ const pStyle = {
   fontSize: '15px',
   textAlign: 'center'
 };
+
+
 
 class App extends Component {
   state = {
@@ -173,7 +179,10 @@ class App extends Component {
           onClose={this.handleClose}
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
-        >
+          
+
+
+                  >
 
         
           <DialogTitle id="alert-dialog-title">{`Luck Factor: ${chanceWon}`}</DialogTitle>
@@ -186,7 +195,7 @@ class App extends Component {
             end={this.state.totalWon} 
             duration={2}
             decimals={0}
-            prefix={`Punches Won: `}
+           // prefix={`Punches Won: `}
             className="App-textwon"
           />
           </DialogContent>
@@ -197,11 +206,21 @@ class App extends Component {
           </DialogActions>
 
         </Dialog>
-        
+        <Confetti
+          width={ window.innerWidth}
+          height={window.innerHeight}
+          run={this.state.open}
+        />
        </>
     );
   }
 }
+const styles = {
+  dialogPaper: {
+    width: '80%',
+    height: '80%',
+  },
+};
 
 const mapStateToProps = state => ({
   todos: state.todos
@@ -214,4 +233,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(App)
+)(withStyles(styles)(App))

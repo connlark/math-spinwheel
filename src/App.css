@@ -21,7 +21,11 @@
 .App-textwon {
   background-color: white;
  
-  font-size: calc(7px + 2vmin);
+  font-size: calc(100px + 2vmin);
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 31%;
   color: black;
 }
 
