@@ -10,7 +10,7 @@ import ReactGA from 'react-ga';
 
 function initializeReactGA() {
   ReactGA.initialize('UA-108987250-2');
-  ReactGA.pageview('/homepage');
+  ReactGA.pageview('/spinner');
 }
 
 //ReactDOM.render(<App />, document.getElementById('root'));
@@ -29,4 +29,4 @@ render(
 
 
 initializeReactGA()
-serviceWorker.unregister();
+serviceWorker.register();
