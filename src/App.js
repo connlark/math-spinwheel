@@ -17,10 +17,26 @@ import ReactGA from 'react-ga';
 import { useWindowSize } from 'react-use'
 import Confetti from 'react-confetti'
 import { withStyles } from '@material-ui/core/styles';
+import firebase from 'firebase/app';
+import Reward from 'react-rewards';
 
+import 'firebase/firestore';
 
-var random = require("random-js")(); // uses the nativeMath engine
+import { Random } from "random-js";
 
+const random = new Random(); // uses the nativeMath engine
+
+var config = {
+  apiKey: "AIzaSyBb2JLoPdIxxRDJcX1cXZWtN8veJeUPGVk",
+  authDomain: "math-spinwheel.firebaseapp.com",
+  databaseURL: "https://math-spinwheel.firebaseio.com",
+  projectId: "math-spinwheel",
+  storageBucket: "math-spinwheel.appspot.com",
+  messagingSenderId: "719880866067"
+};
+firebase.initializeApp(config);
+
+const db = firebase.firestore();
 
 
 var divStyle = {
@@ -78,7 +94,18 @@ class App extends Component {
   }
 
   handleClickOpen = () => {
-    this.setState({ open: true });
+    const { currentWon } = this.state;
+        
+    this.setState({ open: true }, () => {
+      setTimeout(() => {
+        if (currentWon < 3){
+          this.reward.punishMe();
+        }
+        else { 
+          this.reward.rewardMe();
+        }
+      }, 200);
+    });
   };
 
   handleClose = () => {
@@ -92,11 +119,11 @@ class App extends Component {
     let retuner = 0;
     let chance = 0;
     switch (e) {
-      case '/static/media/med.3de86e32.jpg':
+      case '/static/media/med.494f1b11.jpg':
         retuner =  random.integer(3, 6);
         chance = '🙂 (3-6)';
         break;
-      case '/static/media/small.2d17d3a1.jpeg':
+      case '/static/media/small.07ada176.jpeg':
         chance = '😕 (1-3)';
         retuner =  random.integer(1, 3);
         break;
@@ -106,7 +133,7 @@ class App extends Component {
         break;
     }
     //alert(retuner)
-    this.setState({chanceWon: chance})
+    this.setState({chanceWon: chance, currentWon: retuner})
     return retuner
     
   }
@@ -121,6 +148,12 @@ class App extends Component {
         category: 'WON',
         action: String(totalWon)
       });
+
+      const userRef = db.collection("scores").add({
+        won: totalWon,
+        createdAt: new Date,
+        userAgent: navigator.userAgent
+      }); 
 
       this.setState({
         totalWon: totalWon
@@ -141,7 +174,7 @@ class App extends Component {
   render() {
     const { chanceWon, wheelOptions } = this.state;
     return (
-      <>
+      <div>
       <MenuAppBar/>
       <div className="App-header">
       
@@ -156,7 +189,7 @@ class App extends Component {
         //rotations={5}
         backgroundColor="black"
         outerRingColor="black"
-        buttonColor="red"
+        buttonColor="black"
         onEndME={(res) => alert(res)}
       />
       </div>
@@ -174,13 +207,15 @@ class App extends Component {
           }}
        /> */}
 
+      
+
        <Dialog
           open={this.state.open}
           onClose={this.handleClose}
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
           
-
+       
 
                   >
 
@@ -190,28 +225,35 @@ class App extends Component {
           <DialogContent>
        
 
-          
+          <Reward
+            ref={(ref) => { this.reward = ref }}
+            type='emoji'
+            lifetime={2000}
+            angle={95}
+            elementCount={90}
+            zIndex={100}
+            spread={360}
+          >
           <CountUp 
             end={this.state.totalWon} 
-            duration={2}
+            duration={this.state.totalWon < 5 ? 0.01:2}
             decimals={0}
            // prefix={`Punches Won: `}
             className="App-textwon"
           />
+          </Reward>
+
           </DialogContent>
+
           <DialogActions>
             <Button onClick={this.handleClose} color="primary" autoFocus>
               Again
             </Button>
           </DialogActions>
-
+        
         </Dialog>
-        <Confetti
-          width={ window.innerWidth}
-          height={window.innerHeight}
-          run={this.state.open}
-        />
-       </>
+        
+       </div>
     );
   }
 }

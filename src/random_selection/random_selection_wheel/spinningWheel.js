@@ -11,6 +11,9 @@ import Wedges from "./createWedges.js";
 import { connect } from 'react-redux'
 import { addTodo } from '../../actions'
 
+import { AwesomeButton } from "react-awesome-button";
+
+import "react-awesome-button/dist/styles.css";
 //const [count, setCount] = useState(0);
 
 
@@ -264,12 +267,15 @@ const SpinningWheel =
               backgroundColor: this.props.buttonColor,
               transition: "opacity ".concat(this.state.fadeInTime, "s"),
               opacity: ".5",
-              border: "4px solid ".concat(this.props.buttonBorder)
+              border: "4px solid ".concat(this.props.buttonBorder),
+              outline: "none"
+
             };
           } else {
             return {
               backgroundColor: this.props.buttonColor,
-              border: "4px solid ".concat(this.props.buttonBorder)
+              border: "4px solid ".concat(this.props.buttonBorder),
+              outline: "none"
             };
           }
         }
@@ -348,7 +354,7 @@ const SpinningWheel =
                   className: "pointer"
                 }),
                 React.createElement(
-                  "button",
+                  "div",
                   {
                     disabled: this.state.disableButton,
                     style: buttonStyle,
@@ -358,7 +364,7 @@ const SpinningWheel =
                       return _this4.startSpin();
                     }
                   },
-                  "Spin!"
+                  <AwesomeButton ripple style={buttonStyle} >🚀</AwesomeButton>
                 )
               ),
               React.createElement(

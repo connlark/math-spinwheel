@@ -18,9 +18,7 @@
   
 }
 
-.App-textwon {
-  background-color: white;
- 
+.App-textwon { 
   font-size: calc(100px + 2vmin);
   display: block;
   margin-left: auto;
@@ -33,6 +31,10 @@
   color: #61dafb;
 }
 
+.navbar{
+  width: 31%;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -40,4 +42,11 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+body:not(.user-is-tabbing) button:focus,
+body:not(.user-is-tabbing) input:focus,
+body:not(.user-is-tabbing) select:focus,
+body:not(.user-is-tabbing) textarea:focus {
+  outline: none;
 }

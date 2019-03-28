@@ -14,7 +14,14 @@ function initializeReactGA() {
 }
 
 //ReactDOM.render(<App />, document.getElementById('root'));
+function handleFirstTab(e) {
+  if (e.keyCode === 9) { // the "I am a keyboard user" key
+      document.body.classList.add('user-is-tabbing');
+      window.removeEventListener('keydown', handleFirstTab);
+  }
+}
 
+window.addEventListener('keydown', handleFirstTab);
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: http://bit.ly/CRA-PWA
