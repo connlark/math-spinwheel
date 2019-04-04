@@ -19,6 +19,7 @@ import Confetti from 'react-confetti'
 import { withStyles } from '@material-ui/core/styles';
 import firebase from 'firebase/app';
 import Reward from 'react-rewards';
+import RootRef from '@material-ui/core/RootRef';
 
 import 'firebase/firestore';
 
@@ -53,38 +54,44 @@ const pStyle = {
 
 
 class App extends Component {
-  state = {
-    open: false,
-    resultCount: 0,
-    totalWon: 0,
-    score: 5,
-    wheelOptions: {
-      1: {
-        image: require('./imgs/small.jpeg'),
-        result: require('./imgs/small.jpeg')
-      },
-      2: {
-        image: require('./imgs/med.jpg'),
-        result: require('./imgs/med.jpg')
-      },
-      3: {
-        image: require('./imgs/large.jpg'),
-        result: require('./imgs/large.jpg')
-      },
-      4: {
-        image: require('./imgs/small.jpeg'),
-        result: require('./imgs/small.jpeg')
-      },
-      5: {
-        image: require('./imgs/med.jpg'),
-        result: require('./imgs/med.jpg')
-      },
-      6: {
-        image: require('./imgs/small.jpeg'),
-        result: require('./imgs/small.jpeg')
-      },
-    }
-  };
+  constructor(props){
+    super(props);
+    this.state = {
+      open: false,
+      resultCount: 0,
+      totalWon: 0,
+      score: 5,
+      wheelOptions: {
+        1: {
+          image: require('./imgs/small.jpeg'),
+          result: require('./imgs/small.jpeg')
+        },
+        2: {
+          image: require('./imgs/med.jpg'),
+          result: require('./imgs/med.jpg')
+        },
+        3: {
+          image: require('./imgs/large.jpg'),
+          result: require('./imgs/large.jpg')
+        },
+        4: {
+          image: require('./imgs/small.jpeg'),
+          result: require('./imgs/small.jpeg')
+        },
+        5: {
+          image: require('./imgs/med.jpg'),
+          result: require('./imgs/med.jpg')
+        },
+        6: {
+          image: require('./imgs/small.jpeg'),
+          result: require('./imgs/small.jpeg')
+        },
+      }
+    };
+    
+    this.domRef = React.createRef();
+  }
+  
 
   display(spinResult){
     console.log('dispres', spinResult)
@@ -102,7 +109,7 @@ class App extends Component {
           this.reward.punishMe();
         }
         else { 
-          this.reward.rewardMe();
+         // this.reward.rewardMe();
         }
       }, 200);
     });
@@ -172,6 +179,8 @@ class App extends Component {
   }
 
   render() {
+    
+
     const { chanceWon, wheelOptions } = this.state;
     return (
       <div>
@@ -190,7 +199,7 @@ class App extends Component {
         backgroundColor="black"
         outerRingColor="black"
         buttonColor="black"
-        onEndME={(res) => alert(res)}
+       // onEndME={(res) => alert(res)}
       />
       </div>
     
@@ -208,7 +217,7 @@ class App extends Component {
        /> */}
 
       
-
+       <RootRef rootRef={this.domRef}>
        <Dialog
           open={this.state.open}
           onClose={this.handleClose}
@@ -218,7 +227,13 @@ class App extends Component {
        
 
                   >
+          <Confetti
+          width={window.innerWidth*0.225}
+          height={window.innerHeight*0.255}
+          //run={this.state.totalWon > 3}
+        //  style={{zIndex: -1000}}
 
+          />
         
           <DialogTitle id="alert-dialog-title">{`Luck Factor: ${chanceWon}`}</DialogTitle>
 
@@ -234,9 +249,10 @@ class App extends Component {
             zIndex={100}
             spread={360}
           >
+          
           <CountUp 
             end={this.state.totalWon} 
-            duration={this.state.totalWon < 5 ? 0.01:2}
+            duration={this.state.totalWon < 5 ? 0.01:1.2}
             decimals={0}
            // prefix={`Punches Won: `}
             className="App-textwon"
@@ -246,13 +262,13 @@ class App extends Component {
           </DialogContent>
 
           <DialogActions>
-            <Button onClick={this.handleClose} color="primary" autoFocus>
+            <Button onClick={this.handleClose} color="primary" autoFocus style={{zIndex: 100}}> 
               Again
             </Button>
           </DialogActions>
         
         </Dialog>
-        
+        </RootRef>
        </div>
     );
   }

@@ -8499,10 +8499,10 @@ raf@3.4.1:
   dependencies:
     performance-now "^2.1.0"
 
-random-js@^2.0.0-rc5:
-  version "2.0.0-rc5"
-  resolved "https://registry.yarnpkg.com/random-js/-/random-js-2.0.0-rc5.tgz#b031d3603e4fc791c92e6ac94f184a103ea71b1c"
-  integrity sha512-8043wzgT+PhZNEs+94v3gJALWIjvOpeaufKy02PbsQJWvhmc+vk5UfJHpbo5FdIGBU9sNL0x/moDbRabfaUofg==
+random-js@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/random-js/-/random-js-2.0.0.tgz#c1f236517acc0f8fbec76c0199017ad470a85ecb"
+  integrity sha512-7+LxCZeEcI2/uVM1TCYVj834QupkIu9XygTnXaGOqNr5qbdpCOw8+3x8D4itOID0DmQAGLX5vtvlSnSvi+trGQ==
 
 randombytes@^2.0.0, randombytes@^2.0.1, randombytes@^2.0.5:
   version "2.0.6"
@@ -8560,10 +8560,10 @@ react-awesome-button@^6.1.0:
   resolved "https://registry.yarnpkg.com/react-awesome-button/-/react-awesome-button-6.1.0.tgz#df152f4526a334e84ccbbe67d80e11e00561aee3"
   integrity sha512-k+FAB9A5RQ37gTmdpoJp7Y6vC4dZKkzWwWXRmXL7y+LqhFId16QDnuXLWOL7egc483spw+H5tL+5Vdhz1CfY9Q==
 
-react-confetti@2.7.0:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/react-confetti/-/react-confetti-2.7.0.tgz#ed5e6d555a6f908e20a695f3be132a451c0c128c"
-  integrity sha512-ReOxPgnf+xtfvvj4xxL5szWFQ2N4YoKf24I2nvmT13nzgdNqDNKH2kxgbHlX3Ytzfcn8MCpg5G88sTISNH8nnw==
+react-confetti@2.7.3:
+  version "2.7.3"
+  resolved "https://registry.yarnpkg.com/react-confetti/-/react-confetti-2.7.3.tgz#ad69c0245b821a0ccebee3f309eda5bec772e709"
+  integrity sha512-P4YgLaZJCkWs6KnwKSUHXc+Su4+MxqLquC6pWfN2JyVaSRJQ/+9fzC+dLRgj7umuYeekyDjZMzpIC5//Jl4YDA==
   dependencies:
     tween-functions "^1.2.0"
 

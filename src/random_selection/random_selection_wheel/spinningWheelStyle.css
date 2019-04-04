@@ -63,7 +63,7 @@
 }
 
 .spinnerButton {
-  cursor: pointer;
+  /*cursor: pointer;*/
   color: #000;
   background-color: orange;
   border: 4px solid #000;
