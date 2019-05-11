@@ -7,19 +7,14 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import SimpleDialogDemo from './SimpleDialogDemo'
 import { connect } from 'react-redux'
-import { addTodo } from './actions'
 import CountUp from 'react-countup';
 import ReactGA from 'react-ga';
-import { useWindowSize } from 'react-use'
 import Confetti from 'react-confetti'
 import { withStyles } from '@material-ui/core/styles';
 import firebase from 'firebase/app';
 import Reward from 'react-rewards';
-import RootRef from '@material-ui/core/RootRef';
 
 import 'firebase/firestore';
 
@@ -51,7 +46,32 @@ const pStyle = {
   textAlign: 'center'
 };
 
-
+const wheelOptions = {
+  1: {
+    image: require('./imgs/small.jpeg'),
+    result: require('./imgs/small.jpeg')
+  },
+  2: {
+    image: require('./imgs/med.jpg'),
+    result: require('./imgs/med.jpg')
+  },
+  3: {
+    image: require('./imgs/large.jpg'),
+    result: require('./imgs/large.jpg')
+  },
+  4: {
+    image: require('./imgs/small.jpeg'),
+    result: require('./imgs/small.jpeg')
+  },
+  5: {
+    image: require('./imgs/med.jpg'),
+    result: require('./imgs/med.jpg')
+  },
+  6: {
+    image: require('./imgs/small.jpeg'),
+    result: require('./imgs/small.jpeg')
+  },
+}
 
 class App extends Component {
   constructor(props){
@@ -86,7 +106,8 @@ class App extends Component {
           image: require('./imgs/small.jpeg'),
           result: require('./imgs/small.jpeg')
         },
-      }
+      },
+      runConfetti: false
     };
     
     this.domRef = React.createRef();
@@ -117,9 +138,10 @@ class App extends Component {
 
   handleClose = () => {
     
-    //window.location.reload()
+   // window.location.reload()
     window.location.href=window.location.href
-    //this.setState({ open: false });
+   //this.setState({ open: false});
+    //this.setState(this.state)
   };
 
   calcTotalWon = (e) => {
@@ -163,7 +185,8 @@ class App extends Component {
       }); 
 
       this.setState({
-        totalWon: totalWon
+        totalWon: totalWon,
+        runConfetti: true
       }, () => {
         this.handleClickOpen()
       })
@@ -181,9 +204,12 @@ class App extends Component {
   render() {
     
 
-    const { chanceWon, wheelOptions } = this.state;
+    const { chanceWon, wheelOptions, runConfetti} = this.state;
+    const { classes  } = this.props;
+    console.log(classes)
     return (
       <div>
+      
       <MenuAppBar/>
       <div className="App-header">
       
@@ -194,11 +220,12 @@ class App extends Component {
         sources={wheelOptions}
         displayResult={this.display.bind(this)}
         
-        numberOfSources={3}
+        numberOfSources={6}
         //rotations={5}
+        durationOfSpin={3}
         backgroundColor="black"
         outerRingColor="black"
-        buttonColor="black"
+        buttonColor="transparent"
        // onEndME={(res) => alert(res)}
       />
       </div>
@@ -215,25 +242,18 @@ class App extends Component {
            this.setState({wheelOptions: newopts})
           }}
        /> */}
-
+       
       
-       <RootRef rootRef={this.domRef}>
        <Dialog
           open={this.state.open}
           onClose={this.handleClose}
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
-          
+          classes={{ paper: classes.dialogPaper }}
        
 
                   >
-          <Confetti
-          width={window.innerWidth*0.225}
-          height={window.innerHeight*0.255}
-          //run={this.state.totalWon > 3}
-        //  style={{zIndex: -1000}}
-
-          />
+          
         
           <DialogTitle id="alert-dialog-title">{`Luck Factor: ${chanceWon}`}</DialogTitle>
 
@@ -260,6 +280,14 @@ class App extends Component {
           </Reward>
 
           </DialogContent>
+          <Confetti
+       style={{zIndex: 10, maxHeight: '30vh',
+              maxWidth: '30vh', minWidth: '30vh'}}
+    //numberOfPieces={40}
+       // run={runConfetti}
+
+
+          />
 
           <DialogActions>
             <Button onClick={this.handleClose} color="primary" autoFocus style={{zIndex: 100}}> 
@@ -268,16 +296,15 @@ class App extends Component {
           </DialogActions>
         
         </Dialog>
-        </RootRef>
        </div>
     );
   }
 }
 const styles = {
   dialogPaper: {
-    width: '80%',
-    height: '80%',
-  },
+    maxHeight: '30vh',
+    maxWidth: '30vh'
+},
 };
 
 const mapStateToProps = state => ({

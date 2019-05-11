@@ -7,6 +7,7 @@ import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Fragment } from "react";
 import "./styleWedges.css";
 
+
 var Wedges =
 /*#__PURE__*/
 function (_React$Component) {
@@ -166,6 +167,8 @@ function (_React$Component) {
         })))));
         rotateBy += degree;
       }
+
+//console.log(result, this.spinBy(degree, selected) + this.state.rotations)
 
       this.props.setResult(result, this.spinBy(degree, selected) + this.state.rotations);
       this.setState({

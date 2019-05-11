@@ -36,4 +36,4 @@ render(
 
 
 initializeReactGA()
-serviceWorker.register();
+serviceWorker.unregister();

@@ -14,6 +14,8 @@ import { addTodo } from '../../actions'
 import { AwesomeButton } from "react-awesome-button";
 
 import "react-awesome-button/dist/styles.css";
+import "./styles.css";
+
 //const [count, setCount] = useState(0);
 
 
@@ -115,6 +117,7 @@ const SpinningWheel =
             sources[k + 1] = array[k];
           }
 
+
           return sources;
         }
       },
@@ -175,7 +178,7 @@ const SpinningWheel =
         key: "componentDidUpdate",
         value: function componentDidUpdate(prevProps, prevState) {
           var _this3 = this;
-
+          console.log('HI BITCH',this.state.spinBy)
           if (
             !this.state.firstSpin &&
             !this.state.updateWheel &&
@@ -188,6 +191,7 @@ const SpinningWheel =
             this.state.spinning
           ) {
             this.startSpin();
+            
           } else if (this.state.disableButton) {
             setTimeout(function() {
               _this3.setState({
@@ -196,6 +200,7 @@ const SpinningWheel =
                 spinning: false,
                 updateWheel: true
               });
+              
               //////////////////////////////////////////////////////////////////////////////////////////
              //this._this3.onEndME(_this3.state.result)
             // setCount(count + 1)
@@ -264,11 +269,11 @@ const SpinningWheel =
         value: function buttonStyle() {
           if (this.state.displayResult) {
             return {
-              backgroundColor: this.props.buttonColor,
-              transition: "opacity ".concat(this.state.fadeInTime, "s"),
-              opacity: ".5",
-              border: "4px solid ".concat(this.props.buttonBorder),
-              outline: "none"
+             //s backgroundColor: this.props.buttonColor,
+            //  transition: "opacity ".concat(this.state.fadeInTime, "s"),
+            //  opacity: ".5",
+           //   border: "4px solid ".concat(this.props.buttonBorder),
+          //    outline: "none"
 
             };
           } else {
@@ -364,7 +369,7 @@ const SpinningWheel =
                       return _this4.startSpin();
                     }
                   },
-                  <AwesomeButton ripple style={buttonStyle} >🚀</AwesomeButton>
+                  <AwesomeButton ripple type="primary" style={buttonStyle} ><span style={{fontSize:30}} className="emoji" role="img" aria-label="sheep">🚀</span></AwesomeButton>
                 )
               ),
               React.createElement(
