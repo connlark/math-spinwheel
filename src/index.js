@@ -8,6 +8,8 @@ import { createStore } from 'redux'
 import rootReducer from './reducers'
 import ReactGA from 'react-ga';
 
+Object.values = (obj) => Object.keys(obj).map(key => obj[key]);
+
 function initializeReactGA() {
   ReactGA.initialize('UA-108987250-2');
   ReactGA.pageview('/spinner');

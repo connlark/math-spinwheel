@@ -15,6 +15,7 @@ import Confetti from 'react-confetti'
 import { withStyles } from '@material-ui/core/styles';
 import firebase from 'firebase/app';
 import Reward from 'react-rewards';
+import Particles from 'react-particles-js';
 
 import 'firebase/firestore';
 
@@ -38,7 +39,8 @@ const db = firebase.firestore();
 var divStyle = {
  // background: "#eee",
   padding: "20px",
-  margin: "20px"
+  margin: "20px",
+  marginTop: -window.innerHeight * 0.8,
 };
 
 const pStyle = {
@@ -208,11 +210,39 @@ class App extends Component {
     const { classes  } = this.props;
     console.log(classes)
     return (
-      <div>
+      <>
+       <Particles
+                params={{
+                    "particles": {
+                        "line_linked": {
+                                    "color":"#9370DB"
+                                    },
+                        "size": {
+                            "value": 5
+                        }
+                    },
+                    "interactivity": {
+                        "events": {
+                            "onhover": {
+                                "enable": true,
+                                "mode": "repulse"
+                            }
+                        }
+                    }
+                }}
+                height={window.innerHeight}
+                style={{
+                        width: window.innerWidth,
+                        height: window.innerHeight*2,
+                        background: `#000000` ,
+                        zIndex: -1000,
+                        marginBottom: -100
+                 }}
+                />
+                )}
       
-      <MenuAppBar/>
-      <div className="App-header">
-      
+                <div class="row">
+    <div  style={{display: 'flex', justifyContent: 'center'}}>
       <div style={divStyle}>
 
       
@@ -230,7 +260,6 @@ class App extends Component {
       />
       </div>
     
-       </div>
        
        {/* <SimpleDialogDemo
          score={this.state.score}
@@ -242,6 +271,8 @@ class App extends Component {
            this.setState({wheelOptions: newopts})
           }}
        /> */}
+       </div>
+</div>
        
       
        <Dialog
@@ -296,14 +327,15 @@ class App extends Component {
           </DialogActions>
         
         </Dialog>
-       </div>
+       
+       </>
     );
   }
 }
 const styles = {
   dialogPaper: {
-    maxHeight: '30vh',
-    maxWidth: '30vh'
+    maxHeight: '40vh',
+    maxWidth: '40vh'
 },
 };
 
