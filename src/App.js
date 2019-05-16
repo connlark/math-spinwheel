@@ -212,31 +212,15 @@ class App extends Component {
     return (
       <>
        <Particles
-                params={{
-                    "particles": {
-                        "line_linked": {
-                                    "color":"#9370DB"
-                                    },
-                        "size": {
-                            "value": 5
-                        }
-                    },
-                    "interactivity": {
-                        "events": {
-                            "onhover": {
-                                "enable": true,
-                                "mode": "repulse"
-                            }
-                        }
-                    }
-                }}
+                
                 height={window.innerHeight}
                 style={{
                         width: window.innerWidth,
                         height: window.innerHeight*2,
                         background: `#000000` ,
                         zIndex: -1000,
-                        marginBottom: -100
+                        marginBottom: -100,
+                        background: '#7B68EE',
                  }}
                 />
                 )}
