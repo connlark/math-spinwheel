@@ -57,7 +57,7 @@
     "react-dom": "^16.8.6",
     "react-ga": "^2.5.7",
     "react-particles-js": "^2.6.0",
-    "react-random-selection-wheel": "^0.1.0",
+    "react-random-selection-wheel": "git+https://github.com/tdukart/react-random-wheel",
     "react-random-wheel": "^0.1.0",
     "react-redux": "^7.0.3",
     "react-rewards": "^1.0.7",
