@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { SpinningWheel } from "./random_selection";
-import MenuAppBar from './MenuAppBar'
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -17,7 +15,6 @@ import firebase from 'firebase/app';
 import Reward from 'react-rewards';
 import Particles from 'react-particles-js';
 
-import 'firebase/firestore';
 
 import { Random } from "random-js";
 
@@ -33,7 +30,6 @@ var config = {
 };
 firebase.initializeApp(config);
 
-const db = firebase.firestore();
 
 
 var divStyle = {
@@ -50,28 +46,28 @@ const pStyle = {
 
 const wheelOptions = {
   1: {
-    image: require('./imgs/small.jpeg'),
-    result: require('./imgs/small.jpeg')
+    image: require('./imgs/small-min.webp'),
+    result: require('./imgs/small-min.webp')
   },
   2: {
-    image: require('./imgs/med.jpg'),
-    result: require('./imgs/med.jpg')
+    image: require('./imgs/med-min.webp'),
+    result: require('./imgs/med-min.webp')
   },
   3: {
-    image: require('./imgs/large.jpg'),
-    result: require('./imgs/large.jpg')
+    image: require('./imgs/large-min.webp'),
+    result: require('./imgs/large-min.webp')
   },
   4: {
-    image: require('./imgs/small.jpeg'),
-    result: require('./imgs/small.jpeg')
+    image: require('./imgs/small-min.webp'),
+    result: require('./imgs/small-min.webp')
   },
   5: {
-    image: require('./imgs/med.jpg'),
-    result: require('./imgs/med.jpg')
+    image: require('./imgs/med-min.webp'),
+    result: require('./imgs/med-min.webp')
   },
   6: {
-    image: require('./imgs/small.jpeg'),
-    result: require('./imgs/small.jpeg')
+    image: require('./imgs/small-min.webp'),
+    result: require('./imgs/small-min.webp')
   },
 }
 
@@ -85,28 +81,28 @@ class App extends Component {
       score: 5,
       wheelOptions: {
         1: {
-          image: require('./imgs/small.jpeg'),
-          result: require('./imgs/small.jpeg')
+          image: require('./imgs/small.webp'),
+          result: require('./imgs/small.webp')
         },
         2: {
-          image: require('./imgs/med.jpg'),
-          result: require('./imgs/med.jpg')
+          image: require('./imgs/med.webp'),
+          result: require('./imgs/med.webp')
         },
         3: {
-          image: require('./imgs/large.jpg'),
-          result: require('./imgs/large.jpg')
+          image: require('./imgs/large.webp'),
+          result: require('./imgs/large.webp')
         },
         4: {
-          image: require('./imgs/small.jpeg'),
-          result: require('./imgs/small.jpeg')
+          image: require('./imgs/small.webp'),
+          result: require('./imgs/small.webp')
         },
         5: {
-          image: require('./imgs/med.jpg'),
-          result: require('./imgs/med.jpg')
+          image: require('./imgs/med.webp'),
+          result: require('./imgs/med.webp')
         },
         6: {
-          image: require('./imgs/small.jpeg'),
-          result: require('./imgs/small.jpeg')
+          image: require('./imgs/small.webp'),
+          result: require('./imgs/small.webp')
         },
       },
       runConfetti: false
@@ -180,11 +176,7 @@ class App extends Component {
         action: String(totalWon)
       });
 
-      const userRef = db.collection("scores").add({
-        won: totalWon,
-        createdAt: new Date,
-        userAgent: navigator.userAgent
-      }); 
+     
 
       this.setState({
         totalWon: totalWon,
@@ -204,15 +196,31 @@ class App extends Component {
   }
 
   render() {
-    
+
 
     const { chanceWon, wheelOptions, runConfetti} = this.state;
     const { classes  } = this.props;
-    console.log(classes)
+
     return (
       <>
        <Particles
-                
+                params={{
+                  "particles": {
+                      "number": {
+                          "value": 5
+                      },
+                      "size": {
+                          "value": 3
+                      }
+                  },
+                  "interactivity": {
+                      "events": {
+                          "onhover": {
+                              "enable": true,
+                              "mode": "repulse"
+                          }
+                      }
+                  }}}
                 height={window.innerHeight}
                 style={{
                         width: window.innerWidth,
@@ -220,7 +228,7 @@ class App extends Component {
                         background: `#000000` ,
                         zIndex: -1000,
                         marginBottom: -100,
-                        background: '#7B68EE',
+                        background: '#f04135',
                  }}
                 />
                 )}
@@ -270,7 +278,7 @@ class App extends Component {
                   >
           
         
-          <DialogTitle id="alert-dialog-title">{`Luck Factor: ${chanceWon}`}</DialogTitle>
+          <DialogTitle id="alert-dialog-title">{`                  `}</DialogTitle>
 
           <DialogContent>
        
@@ -306,7 +314,7 @@ class App extends Component {
 
           <DialogActions>
             <Button onClick={this.handleClose} color="primary" autoFocus style={{zIndex: 100}}> 
-              Again
+              Spin Again!
             </Button>
           </DialogActions>
         
