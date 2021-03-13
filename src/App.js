@@ -81,28 +81,28 @@ class App extends Component {
       score: 5,
       wheelOptions: {
         1: {
-          image: require('./imgs/small.webp'),
-          result: require('./imgs/small.webp')
+          image: require('./imgs/small-min.webp'),
+          result: require('./imgs/small-min.webp')
         },
         2: {
-          image: require('./imgs/med.webp'),
-          result: require('./imgs/med.webp')
+          image: require('./imgs/med-min.webp'),
+          result: require('./imgs/med-min.webp')
         },
         3: {
-          image: require('./imgs/large.webp'),
-          result: require('./imgs/large.webp')
+          image: require('./imgs/large-min.webp'),
+          result: require('./imgs/large-min.webp')
         },
         4: {
-          image: require('./imgs/small.webp'),
-          result: require('./imgs/small.webp')
+          image: require('./imgs/small-min.webp'),
+          result: require('./imgs/small-min.webp')
         },
         5: {
-          image: require('./imgs/med.webp'),
-          result: require('./imgs/med.webp')
+          image: require('./imgs/med-min.webp'),
+          result: require('./imgs/med-min.webp')
         },
         6: {
-          image: require('./imgs/small.webp'),
-          result: require('./imgs/small.webp')
+          image: require('./imgs/small-min.webp'),
+          result: require('./imgs/small-min.webp')
         },
       },
       runConfetti: false
@@ -145,12 +145,13 @@ class App extends Component {
   calcTotalWon = (e) => {
     let retuner = 0;
     let chance = 0;
+    console.log(e)
     switch (e) {
-      case '/static/media/med.494f1b11.jpg':
+      case '/static/media/med-min.526ea968.webp':
         retuner =  random.integer(3, 6);
         chance = '🙂 (3-6)';
         break;
-      case '/static/media/small.07ada176.jpeg':
+      case '/static/media/small-min.0c9b4162.webp':
         chance = '😕 (1-3)';
         retuner =  random.integer(1, 3);
         break;

@@ -178,7 +178,6 @@ const SpinningWheel =
         key: "componentDidUpdate",
         value: function componentDidUpdate(prevProps, prevState) {
           var _this3 = this;
-          console.log('HI BITCH',this.state.spinBy)
           if (
             !this.state.firstSpin &&
             !this.state.updateWheel &&
