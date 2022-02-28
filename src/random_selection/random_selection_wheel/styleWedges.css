@@ -1,0 +1,22 @@
+.sourceImage {
+  object-fit: cover;
+  width: 300px;
+  height: 300px;
+}
+
+.triangleTransform {
+  clip-path: polygon(50% 100%, 20% 0%, 80% 0%);
+  width: 300px;
+  height: 300px;
+}
+
+.scaleDiv {
+  box-sizing: border-box;
+  width: 300px;
+  height: 300px;
+}
+
+.wedgePosition {
+  position: absolute;
+  transform-origin: center bottom;
+}

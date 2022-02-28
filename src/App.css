@@ -1,0 +1,64 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.App-textwon { 
+  font-size: calc(100px + 2vmin);
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 91%;
+  color: black;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.navbar{
+  width: 31%;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+body:not(.user-is-tabbing) button:focus,
+body:not(.user-is-tabbing) input:focus,
+body:not(.user-is-tabbing) select:focus,
+body:not(.user-is-tabbing) textarea:focus {
+  outline: none;
+}
+
+#particle-canvas {
+  position:fixed !important;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+}
+
+.col-centered{
+  float: none;
+  margin: 0 auto;
+}
