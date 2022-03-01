@@ -21,9 +21,10 @@ function handleFirstTab(e) {
   }
 }
 
-gtag('event', 'react app version', {
+gtag('event', `react app version: ${process.env.REACT_APP_VERSION}`, {
   webappversion: `${process.env.REACT_APP_VERSION}`,
 })
+console.log(`version: ${process.env.REACT_APP_VERSION}`)
 
 window.addEventListener('keydown', handleFirstTab);
 // If you want your app to work offline and load faster, you can change
